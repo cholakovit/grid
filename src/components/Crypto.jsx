@@ -1,18 +1,22 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { selectCrypto } from '../store/actions'
 
 const Crypto = ({sortedData, loading}) => {
     if(loading) {
         return <h2>Loading</h2>
     }
 
-    //console.log('Crypto',sortedData);
+    const dispatch = useDispatch()
 
     var watchListData = []
     const setWatchList = (crypto) => {
         //localStorage.clear();
-        console.log(crypto)
-        watchListData.push(crypto)
-        localStorage.setItem('crypto', JSON.stringify(watchListData))
+        //console.log(crypto)
+        // watchListData.push(crypto)
+        // localStorage.setItem('crypto', JSON.stringify(watchListData))
+        dispatch(selectCrypto(crypto))
+
     }
 
     return (

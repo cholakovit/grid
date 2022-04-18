@@ -1,12 +1,13 @@
-import { useCallback, useState } from "react"
+import { useCallback, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { sortData, SortButton, headers} from '../Helper'
 import Watch from "../components/Watch"
 import Pagination from "../components/Pagination"
 
 const Watchlist = () => {
-  const [data, setData] = useState(JSON.parse(localStorage.getItem('crypto')))
-  const [sortKey, setSortKey] = useState("priceUsd");
-  const [sortOrder, setSortOrder] = useState("desc");
+  const data = useSelector(state => state.watchCrypto)
+  const [sortKey, setSortKey] = useState("priceUsd")
+  const [sortOrder, setSortOrder] = useState("desc")
 
   const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
@@ -31,7 +32,9 @@ const Watchlist = () => {
     setSortKey(key);
   }
 
-  //console.log('watchlist',data.length)
+  console.log('watch',currentCrypto)
+
+
   return (
     <>
       <h1>Watchlist</h1>

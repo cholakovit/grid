@@ -22,8 +22,12 @@ const Cryptos = () => {
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
     useEffect(() => {
+
+        //console.log('import.meta.env',import.meta.env.VITE_CRYPTO_URL)
+
         setLoading(true)
 
+        // I should use fetch(import.meta.env.VITE_CRYPTO_URL) - but doesn't work for some reason...
         fetch('https://api.coincap.io/v2/markets')
         .then(response => response.json())
         .then(_data => setData(Object.entries(_data.data)))
@@ -42,7 +46,6 @@ const Cryptos = () => {
         setSortKey(key);
     }
 
-    //console.log('cryptos', data)
     return (
         <>
             <table>
